@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>CV | Khadija Elkhiraoui</title>
+    
+    <!-- Polices -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    
+    <!-- React CDN -->
+    <script src="https://unpkg.com/react@18.2.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <style>
+       
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #F0F2F5;
+            color: #1A1A2E;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        
+        .header {
+            background: #e0e0d9;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid #E8E8E8;
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #1A1A2E;
+        }
+
+        .header-info h1 {
+            font-size: 28px;
+            color: #1A1A2E;
+            margin-bottom: 5px;
+        }
+
+        .header-info .title {
+            font-size: 16px;
+            color: #4A5568;
+            margin-bottom: 12px;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            background: #EDF2F7;
+            padding: 6px 14px;
+            border-radius: 25px;
+            text-decoration: none;
+            color: #1A1A2E;
+            font-size: 13px;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .contact-links a:hover {
+            background: #1A1A2E;
+            color: #FFFFFF;
+        }
+
+
+        .section {
+            background: #e8e9e3;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid #bbbaba;
+        }
+
+        .section h2 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            padding-left: 10px;
+            border-left: 4px solid #1A1A2E;
+            color: #1A1A2E;
+        }
+
+        
+        .skill-item {
+            margin-bottom: 15px;
+        }
+
+        .skill-name {
+            font-weight: 500;
+            margin-bottom: 6px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+        }
+
+        .skill-bar-bg {
+            background: #E2E8F0;
+            height: 6px;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .skill-bar-fill {
+            width: 0%;
+            height: 100%;
+            background: #1A1A2E;
+            border-radius: 3px;
+            transition: width 0.8s ease;
+        }
+
+        .edu-item {
+            margin-bottom: 10px;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .edu-header {
+            background: #FAFAFA;
+            padding: 12px 15px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .edu-header i {
+            transition: transform 0.3s;
+            color: #4A5568;
+        }
+
+        .edu-item.active .edu-header i {
+            transform: rotate(180deg);
+        }
+
+        .edu-detail {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 15px;
+            transition: max-height 0.4s ease;
+            color: #4A5568;
+            font-size: 14px;
+        }
+
+        .edu-item.active .edu-detail {
+            max-height: 200px;
+            padding: 12px 15px;
+        }
+
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .project-card {
+            background: #ddd6d6;
+            border-radius: 14px;
+            padding: 18px;
+            border: 1px solid #7d7e7e;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .project-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(173, 172, 172, 0.08);
+            border-color: #1A1A2E;
+        }
+
+        .project-card h3 {
+            color: #1A1A2E;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .project-card p {
+            color: #4A5568;
+            font-size: 14px;
+        }
+
+        .project-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            border: 1px solid #E2E8F0;
+        }
+
+        .project-link {
+            display: inline-block;
+            margin-top: 12px;
+            color: #1A1A2E;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .project-link:hover {
+            color: #4A5568;
+        }
+
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #CBD5E0;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            background: #FFFFFF;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #1A1A2E;
+        }
+
+        .btn-submit {
+            background: #17171f;
+            color: #FFFFFF;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-submit:hover {
+            background: #2D3748;
+        }
+
+        .error-msg {
+            color: #E53E3E;
+            margin-top: 10px;
+            font-size: 12px;
+        }
+
+        .success-msg {
+            color: #38A169;
+            margin-top: 10px;
+            font-size: 12px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #718096;
+            font-size: 12px;
+            border-top: 1px solid #E2E8F0;
+            margin-top: 20px;
+        }
+
+        
+        @media (max-width: 868px) {
+            body {
+                padding: 15px;
+            }
+            .header {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+            }
+            .contact-links {
+                justify-content: center;
+            }
+            .section {
+                padding: 18px;
+            }
+            .section h2 {
+                font-size: 18px;
+            }
+            .profile-img {
+                width: 100px;
+                height: 100px;
+            }
+            .header-info h1 {
+                font-size: 24px;
+            }
+        }
+
+    
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                max-width: 900px;
+            }
+        }
+
+        
+        @media (min-width: 1025px) {
+            .projects-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div id="react-header"></div>
+    <section class="section" id="section-about">
+        <h2> À propos de moi</h2>
+        <div id="about-content">
+            <p> <strong>Khadija Elkhiraoui</strong>, étudiante en <strong>2ème année Licence Informatique</strong>.</p>
+            <p>Je suis passionnée par le domaine du développement web, un secteur qui ne cesse de se renouveler et d'innover. Ce qui m'attire le plus dans ce domaine, c'est la possibilité de créer, d'innover et de voir ses idées prendre vie à travers des sites web et des applications.</p>
+            <p> J'aime particulièrement développer des <strong>jeux vidéo 3D</strong> et des <strong>sites web interactifs</strong>. Chaque projet est pour moi une opportunité d'apprendre et de me dépasser.</p>
+            <p> Mon objectif est de devenir une développeuse web créative et compétente.</p>
+        </div>
+    </section>
+
+    
+    <section class="section" id="section-skills">
+        <h2> Compétences techniques</h2>
+        <div id="skills-container"></div>
+    </section>
+
+    
+    <section class="section" id="section-education">
+        <h2> Parcours académique</h2>
+        <div id="education-container"></div>
+    </section>
+
+   
+    <section class="section">
+        <h2>experiences</h2>
+        <div id="react-projects" class="projects-grid"></div>
+    </section>
+
+    
+    <section class="section">
+        <h2> Me contacter</h2>
+        <div id="react-contact"></div>
+    </section>
+
+    <footer>
+        <p>© 2026 - CV Interactif | Réalisé avec HTML/CSS, JavaScript</p>
+        <p style="margin-top: 5px;">📧 khadija.elkhiraoui@example.com | 📍 Marrakeche, Maroc</p>
+    </footer>
+</div>
+
+<!-- JAVASCRIPT POUR MANIPULATION DOM-->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        
+        // ---------- COMPÉTENCES ----------
+        const skillsData = [
+            { name: "HTML5 / CSS3", level: 90 },
+            { name: "JavaScript / jQuery/React", level: 85 },
+            { name: "la langue francaises", level: 65 },
+            { name: " la langue anglaise", level: 85 },
+            { name: "C++ / C", level: 80 },
+            { name: "DATABASE", level: 70 }
+        ];
+
+        const skillsContainer = document.getElementById("skills-container");
+
+        function displaySkills() {
+            skillsContainer.innerHTML = "";
+            for (let i = 0; i < skillsData.length; i++) {
+                const skill = skillsData[i];
+                const skillDiv = document.createElement("div");
+                skillDiv.className = "skill-item";
+                skillDiv.setAttribute("data-level", skill.level);
+                skillDiv.innerHTML = `
+                    <div class="skill-name">
+                        <span>${skill.name}</span>
+                        <span>${skill.level}%</span>
+                    </div>
+                    <div class="skill-bar-bg">
+                        <div class="skill-bar-fill"></div>
+                    </div>
+                `;
+                skillsContainer.appendChild(skillDiv);
+            }
+        }
+        displaySkills();
+
+        // PARCOURE
+        const educationData = [
+            { 
+                year: "2026 - Aujourd'hui", 
+                title: "Licence en Informatique (2ème année)", 
+                school: "Faculté des Sciences Smlalia a marrakech", 
+                desc: "Programmation web, c++, c, Bases de données, Algorithmique,phyton,mysql" 
+            },
+            { 
+                year: "2024 - 2026", 
+                title: "DEUST Technologie de l'Information", 
+                school: "Fssm Marrakech", 
+                desc: "Développement web, algorithmique, gestion de projet" 
+            },
+            { 
+                year: "2024", 
+                title: "Baccalauréat Sciences Physique", 
+                school: "Lycée Ibn Khaldone", 
+                desc: "Mention Bien " 
+            }
+        ];
+
+        const eduContainer = document.getElementById("education-container");
+
+        for (let i = 0; i < educationData.length; i++) {
+            const edu = educationData[i];
+            const itemDiv = document.createElement("div");
+            itemDiv.className = "edu-item";
+            itemDiv.innerHTML = `
+                <div class="edu-header">
+                    <span> ${edu.year} - ${edu.title}</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="edu-detail">
+                    <strong>${edu.school}</strong>
+                    <p style="margin-top: 5px;">${edu.desc}</p>
+                </div>
+            `;
+            const header = itemDiv.querySelector(".edu-header");
+            header.addEventListener("click", function() {
+                itemDiv.classList.toggle("active");
+                document.querySelectorAll(".edu-item").forEach(item => {
+                    if (item !== itemDiv) item.classList.remove("active");
+                });
+            });
+            eduContainer.appendChild(itemDiv);
+        }
+        document.querySelector(".edu-item")?.classList.add("active");
+
+        // SURVOL TITRES 
+        document.querySelectorAll(".section h2").forEach(h2 => {
+            h2.addEventListener("mouseenter", () => h2.style.color = "#4A5568");
+            h2.addEventListener("mouseleave", () => h2.style.color = "#1A1A2E");
+        });
+    });
+</script>
+
+<!--JQUERY ANIMATIONS -->
+<script>
+    $(document).ready(function() {
+        function animateSkillBars() {
+            $('.skill-item').each(function() {
+                const level = $(this).data('level');
+                const $bar = $(this).find('.skill-bar-fill');
+                if (!$bar.attr('data-animated')) {
+                    $bar.css('width', level + '%');
+                    $bar.attr('data-animated', 'true');
+                }
+            });
+        }
+
+        $(window).on('scroll', function() {
+            const skillsTop = $('#section-skills').offset().top;
+            const windowBottom = $(window).scrollTop() + $(window).height();
+            if (windowBottom > skillsTop + 100) {
+                animateSkillBars();
+                $(window).off('scroll');
+            }
+        });
+        animateSkillBars();
+
+        $('.skill-item').on('mouseenter', function() {
+            const level = $(this).data('level');
+            $(this).find('.skill-bar-fill').css('width', level + '%');
+        });
+
+        window.validateContact = function(name, email, message) {
+            if (!name.trim()) return "Nom requis";
+            if (!email.trim()) return "Email requis";
+            const regex = /^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/;
+            if (!regex.test(email)) return "Email invalide";
+            if (!message.trim()) return "Message requis";
+            return null;
+        };
+    });
+</script>
+
+<!--COMPOSANTS REACT-->
+<script type="text/babel">
+    // COMPOSANT HEADER
+    const Header = () => {
+        const userInfo = {
+            fullName: "Khadija Elkhiraoui",
+            title: " 2ème année Licence Informatique",
+            email: "k.elkhiraoui@uca.ac.com",
+            linkedin: "https://linkedin.com/in/khadija-elkhiraoui",
+            github: "https://github.com/khadijaelkhiraoui"
+        };
+        
+        return (
+            <div className="header">
+                <img 
+                    src="C:\Users\User\Desktop\cv webb\assets\images\PROJET.jpeg" 
+                    alt="Photo de profil" 
+                    className="profile-img"
+                   
+                />
+                <div className="header-info">
+                    <h1>{userInfo.fullName}</h1>
+                    <div className="title">{userInfo.title}</div>
+                    <div className="contact-links">
+                        <a href={`mailto:${userInfo.email}`}>📧 {userInfo.email}</a>
+                        <a href={userInfo.linkedin} target="_blank">🔗 LinkedIn</a>
+                        <a href={userInfo.github} target="_blank">💻 GitHub</a>
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
+    // COMPOSANT PROJECT CARD
+    const ProjectCard = ({ titre, description, lien, image }) => {
+        return (
+            <div className="project-card">
+                {image && <img className="project-img" src={image} alt={titre} />}
+                <h3>{titre}</h3>
+                <p>{description}</p>
+                {lien && <a href={lien} target="_blank" className="project-link">Voir le projet GitHub</a>}
+            </div>
+        );
+    };
+
+    // COMPOSANT CONTACT FORM
+    const ContactForm = () => {
+        const [name, setName] = React.useState("");
+        const [email, setEmail] = React.useState("");
+        const [message, setMessage] = React.useState("");
+        const [feedback, setFeedback] = React.useState("");
+        const [isError, setIsError] = React.useState(false);
+        
+        const handleSubmit = (e) => {
+            e.preventDefault();
+            const error = window.validateContact(name, email, message);
+            if (error) {
+                setFeedback(error);
+                setIsError(true);
+            } else {
+                setFeedback(" Message envoyé avec succès !");
+                setIsError(false);
+                setName("");
+                setEmail("");
+                setMessage("");
+                setTimeout(() => setFeedback(""), 3000);
+            }
+        };
+        
+        return (
+            <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <input type="text" placeholder="Votre nom" value={name} onChange={(e) => setName(e.target.value)} />
+                </div>
+                <div className="form-group">
+                    <input type="email" placeholder="Votre email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                </div>
+                <div className="form-group">
+                    <textarea rows="4" placeholder="Votre message" value={message} onChange={(e) => setMessage(e.target.value)} />
+                </div>
+                <button type="submit" className="btn-submit"> Envoyer</button>
+                {feedback && <p className={isError ? "error-msg" : "success-msg"}>{feedback}</p>}
+            </form>
+        );
+    };
+
+  
+    // LISTE DES PROJETS 
+    
+    
+    let projectsList = [
+        {
+            titre: " Jeu Vidéo 2D - Aventure Platformer",
+            description: "Jeu de plateforme 2D développé avec c++. Le jouer qui la capacité de courir et de sauter par-dessus les obstacles et de se glasser en dessous, et qui court vit aussi devient meurt si quelque chose le touche , en puis il gagne de l'argent sans jamais le perdre  . Projet réalisé en binnome.",
+            lien: "",
+            
+        },
+        {
+            titre: " Site Web de Location de Voitures",
+            description: "Plateforme de location de voitures développée en groupe. Catalogue de véhicules, filtres par marque/prix, réservation en ligne. Projet académique.",
+            lien: "https://hamzagabsi.github.io/LuxESTATTE-/",
+            
+        }
+    ];
+
+    function renderProjects() {
+        ReactDOM.createRoot(document.getElementById("react-projects")).render(
+            <div className="projects-grid">
+                {projectsList.map((project, index) => (
+                    <ProjectCard key={index} {...project} />
+                ))}
+            </div>
+        );
+    }
+
+    // MONTAGE
+    ReactDOM.createRoot(document.getElementById("react-header")).render(<Header />);
+    renderProjects();
+    ReactDOM.createRoot(document.getElementById("react-contact")).render(<ContactForm />);
+</script>
+
+</body>
+</html>
